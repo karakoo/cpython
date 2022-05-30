@@ -50,7 +50,7 @@ typedef struct {
      *     code
      *     annotations */
     uint32_t func_version;
-
+    
     /* Invariant:
      *     func_closure contains the bindings for func_code->co_freevars, so
      *     PyTuple_Size(func_closure) == PyCode_GetNumFree(func_code)
@@ -62,25 +62,38 @@ PyAPI_DATA(PyTypeObject) PyFunction_Type;
 
 #define PyFunction_Check(op) Py_IS_TYPE(op, &PyFunction_Type)
 
-PyAPI_FUNC(PyObject *) PyFunction_New(PyObject *, PyObject *);
-PyAPI_FUNC(PyObject *) PyFunction_NewWithQualName(PyObject *, PyObject *, PyObject *);
-PyAPI_FUNC(PyObject *) PyFunction_GetCode(PyObject *);
-PyAPI_FUNC(PyObject *) PyFunction_GetGlobals(PyObject *);
-PyAPI_FUNC(PyObject *) PyFunction_GetModule(PyObject *);
-PyAPI_FUNC(PyObject *) PyFunction_GetDefaults(PyObject *);
+PyAPI_FUNC(PyObject *)PyFunction_New(PyObject *, PyObject *);
+
+PyAPI_FUNC(PyObject *)PyFunction_NewWithQualName(PyObject *, PyObject *,
+                                                 PyObject *);
+
+PyAPI_FUNC(PyObject *)PyFunction_GetCode(PyObject *);
+
+PyAPI_FUNC(PyObject *)PyFunction_GetGlobals(PyObject *);
+
+PyAPI_FUNC(PyObject *)PyFunction_GetModule(PyObject *);
+
+PyAPI_FUNC(PyObject *)PyFunction_GetDefaults(PyObject *);
+
 PyAPI_FUNC(int) PyFunction_SetDefaults(PyObject *, PyObject *);
-PyAPI_FUNC(PyObject *) PyFunction_GetKwDefaults(PyObject *);
+
+PyAPI_FUNC(PyObject *)PyFunction_GetKwDefaults(PyObject *);
+
 PyAPI_FUNC(int) PyFunction_SetKwDefaults(PyObject *, PyObject *);
-PyAPI_FUNC(PyObject *) PyFunction_GetClosure(PyObject *);
+
+PyAPI_FUNC(PyObject *)PyFunction_GetClosure(PyObject *);
+
 PyAPI_FUNC(int) PyFunction_SetClosure(PyObject *, PyObject *);
-PyAPI_FUNC(PyObject *) PyFunction_GetAnnotations(PyObject *);
+
+PyAPI_FUNC(PyObject *)PyFunction_GetAnnotations(PyObject *);
+
 PyAPI_FUNC(int) PyFunction_SetAnnotations(PyObject *, PyObject *);
 
-PyAPI_FUNC(PyObject *) _PyFunction_Vectorcall(
-    PyObject *func,
-    PyObject *const *stack,
-    size_t nargsf,
-    PyObject *kwnames);
+PyAPI_FUNC(PyObject *)_PyFunction_Vectorcall(
+        PyObject *func,
+        PyObject *const *stack,
+        size_t nargsf,
+        PyObject *kwnames);
 
 /* Macros for direct access to these values. Type checks are *not*
    done, so use with care. */
@@ -103,8 +116,9 @@ PyAPI_FUNC(PyObject *) _PyFunction_Vectorcall(
 PyAPI_DATA(PyTypeObject) PyClassMethod_Type;
 PyAPI_DATA(PyTypeObject) PyStaticMethod_Type;
 
-PyAPI_FUNC(PyObject *) PyClassMethod_New(PyObject *);
-PyAPI_FUNC(PyObject *) PyStaticMethod_New(PyObject *);
+PyAPI_FUNC(PyObject *)PyClassMethod_New(PyObject *);
+
+PyAPI_FUNC(PyObject *)PyStaticMethod_New(PyObject *);
 
 #ifdef __cplusplus
 }
